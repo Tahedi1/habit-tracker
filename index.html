@@ -4,9 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Habit Tracker</title>
+  
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="/habit-tracker/manifest.json">
+  <meta name="theme-color" content="#4F46E5">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Habit Tracker">
+  <link rel="apple-touch-icon" href="/habit-tracker/icon-192.png">
+  <meta name="description" content="Track your daily habits across multiple life areas">
+  
 </head>
 <body>
   <div id="root"></div>
   <script type="module" src="./src/main.jsx"></script>
+  
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/habit-tracker/sw.js')
+          .then(registration => console.log('Service Worker registered successfully'))
+          .catch(err => console.log('Service Worker registration failed:', err));
+      });
+    }
+  </script>
 </body>
 </html>
